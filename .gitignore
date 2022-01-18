@@ -17,3 +17,5 @@
 # custom
 .idea
 tests
+*.ini
+*.db

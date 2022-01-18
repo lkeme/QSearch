@@ -1,0 +1,21 @@
+[app]
+name = QSearch
+env = local
+token = b95086a92ffcac73f9c828876a8366f0
+debug = true
+addr = localhost
+port = 3000
+url = http://localhost:3000
+version = V0.0.1
+
+[database]
+; Error Warn Info Silent
+log_mode = silent
+driver = sqlite
+dsn = data/database/data.db
+; Error Warn Info Silent
+;log_mode = info
+;driver = mysql
+;dsn = user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local
+
+
