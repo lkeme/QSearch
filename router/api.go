@@ -2,11 +2,18 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	api "github.com/lkeme/QSearch/app/controller/v1"
 	"github.com/lkeme/QSearch/app/middleware"
+	_ "github.com/lkeme/QSearch/docs"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func RegisterAPIRoutes(r *gin.Engine) {
 	// Default() middleware New() No middleware
+
+	// SwagAPI register swagger handler
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// unified path
 	v1 := r.Group("/api/v1")
@@ -14,10 +21,12 @@ func RegisterAPIRoutes(r *gin.Engine) {
 	// No authentication required
 	publicGroup := v1.Group("")
 	{
-		// /api/v1/health  health check
-		publicGroup.GET("/health", func(c *gin.Context) {
-			c.JSON(200, "ok")
-		})
+		// SystemRouterGroup
+		systemGroup := publicGroup.Group("system")
+		{
+			// /api/v1/system/health
+			systemGroup.GET("/health", api.ApiGroupApp.SystemApiGroup.Health)
+		}
 
 	}
 
