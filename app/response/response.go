@@ -80,6 +80,12 @@ func Unauthorized(c *gin.Context, msg ...string) {
 	})
 }
 
+func InternalServerError(c *gin.Context, msg ...string) {
+	c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+		"message": defaultMessage("请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。", msg...),
+	})
+}
+
 // defaultMessage 内用的辅助函数，用以支持默认参数默认值
 // Go 不支持参数默认值，只能使用多变参数来实现类似效果
 func defaultMessage(defaultMsg string, msg ...string) (message string) {

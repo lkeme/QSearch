@@ -12,12 +12,13 @@ type ResourceStruct struct{}
 
 // ResourceInterface Base interface
 type ResourceInterface interface {
+	i()                    //
 	Create(c *gin.Context) //
 	Delete(c *gin.Context) //
 	Update(c *gin.Context) //
 	Index(c *gin.Context)  //
 	Total(c *gin.Context)  //
-	i()                    //
+	Query(c *gin.Context)  //
 }
 
 // i 为了避免被其他包实现
@@ -44,6 +45,11 @@ func (r *ResourceStruct) Index(c *gin.Context) {
 }
 
 func (r *ResourceStruct) Total(c *gin.Context) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *ResourceStruct) Query(c *gin.Context) {
 	//TODO implement me
 	panic("implement me")
 }
